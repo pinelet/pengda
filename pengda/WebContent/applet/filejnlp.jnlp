@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="" href="">
+	<information>
+		<title>fileDemo</title>
+		<vendor>creditease</vendor>
+	</information>
+	<resources>
+		<!-- Application Resources -->
+		<j2se version="1.6+"
+			href="http://java.sun.com/products/autodl/j2se" />
+		<jar href="fileapplet.jar" main="true" />
+		<!-- use local lib -->
+		<!--jar href="commons-httpclient-3.1.jar" />
+		<jar href="commons-codec-1.2.jar" />
+		<jar href="commons-logging-1.1.1.jar" / -->
+	</resources>
+	<applet-desc 
+		name="File Applet"
+		main-class="com.creditease.dss.applet.FileManage"
+		width="300"
+		height="20">
+	</applet-desc>
+	<security>
+		<all-permissions/>
+	</security>
+	<!--update check="background"/ -->
+</jnlp>

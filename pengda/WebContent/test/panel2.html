@@ -1,0 +1,33 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="cache-control" content="no-cache"> 
+	<meta http-equiv="expires" content="0">
+</head>
+<body>
+<div id="dlguser" class="easyui-dialog" data-options="iconCls:'icon-save', border:true" style="width:600px;height:370px;padding:10px 20px"  buttons="#dlg-buttons"> 
+     <form id="userfm" method="post">
+     	<input id="roleid" name="roleid" type="text" value="2"/>
+     </form>  
+ </div>  
+ <div id="dlg-buttons">  
+     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveuser()">保存</a>  
+     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlguser').dialog('close')">取消</a>  
+ </div> 
+	<script type="text/javascript">
+	var url = 'http://www.google.cn';
+	function saveuser() {
+		//$("#roleid").val("2");
+		$rol = $("#roleid");
+		alert($rol.val());
+		$('#userfm').form('submit',{  
+            url: url,    
+            success: function(result){ 
+                alert(result); 
+            }  
+        });
+	}
+	</script>
+</body>
+</html>

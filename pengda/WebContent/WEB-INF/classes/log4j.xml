@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/' threshold="all">
+	<appender name="LogFile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${catalina.home}/logs/utp.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [%5p] [%t] (%l) - %m%n" />
+		</layout>
+	</appender>
+	<appender name="Console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [%5p] [%t] (%l) - %m%n" />
+		</layout>
+	</appender>
+	<category name="com.pinelet.utp.core.handler.unionServerHandler" additivity="false">
+		<priority value="DEBUG" />
+		<appender-ref ref="Console" />
+	</category>
+	<category name="com.ibatis" additivity="false">
+		<priority value="DEBUG" />
+		<appender-ref ref="Console" />
+	</category>
+	<category name="com.ibatis.common.jdbc.SimpleDataSource" additivity="false">
+		<priority value="DEBUG" />
+		<appender-ref ref="Console" />
+	</category>
+	<category name="com.ibatis.common.jdbc.ScriptRunner" additivity="false">
+		<priority value="DEBUG" />
+		<appender-ref ref="Console" />
+	</category>
+	<category name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" additivity="false">
+		<priority value="DEBUG" />
+		<appender-ref ref="Console" />
+	</category>
+	<category name="java.sql.PreparedStatement" additivity="false">
+		<priority value="DEBUG" />
+		<appender-ref ref="Console" />
+	</category>
+	<category name="java.sql.Connection" additivity="false">
+		<priority value="DEBUG" />
+		<appender-ref ref="Console" />
+	</category>
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="Console" />
+	</root>
+</log4j:configuration>

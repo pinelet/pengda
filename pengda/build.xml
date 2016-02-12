@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="doc-extending" basedir="." default="package">
+    <!-- import properties (app settings, classpath, jar file locations) -->
+    <import file="properties.xml"/>
+    <taskdef name="apt" classname="com.sun.tools.ws.ant.Apt">
+        <classpath refid="jaxws.classpath"/>
+    </taskdef>
+    <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+        <classpath refid="jaxws.classpath"/>
+    </taskdef>
+    <!-- prepare -->
+    <target name="prepare" description="create target directories">
+        <echo message="Preparing target directory '${build.dir}'"/>
+        <delete dir="${build.dir}"/>
+        <mkdir dir="${build.dir}/classes"/>
+        <mkdir dir="${build.dir}/META-INF"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+    <!-- compile -->
+    <target name="compile" depends="prepare" description="Compile project">
+        <echo>Compiling ..</echo>
+        <javac srcdir="${src.dir}" destdir="${build.dir}/classes" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}" classpathref="compile.classpath" encoding="${build.encoding}" fork="false" source="${build.source}" target="${build.target}"/>
+        <copy todir="${build.dir}/classes">
+            <fileset dir="${config.resource.dir}">
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+                <include name="**/*.vm"/>
+            </fileset>
+        </copy>
+    </target>
+    <!-- package -->
+    <target name="package" depends="compile">
+        <delete file="${dist.dir}/${jar.name}"/>
+        <jar destfile="${dist.dir}/${jar.name}">
+            <fileset dir="${build.dir}/classes">
+                <include name="**/*.class"/>
+                <include name="**/*.xml"/>
+                <include name="**/*.properties"/>
+                <include name="**/*.vm"/>
+            </fileset>
+            <metainf dir="${build.dir}/META-INF"/>
+        </jar>
+    </target>
+</project>

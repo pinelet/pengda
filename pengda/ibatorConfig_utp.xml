@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ibatorConfiguration PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN" "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd" >
+<ibatorConfiguration>
+	<classPathEntry location="g:/projects/workspace/pengda/WebContent/WEB-INF/lib/mysql-connector-java-5.1.12-bin.jar" />
+	<ibatorContext id="context2" targetRuntime="Ibatis2Java5">
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/utp" userId="pc"
+			password="111111" /><!-- root 123456-->
+		<javaModelGenerator targetPackage="com.pinelet.utp.entity"
+			targetProject="g:/projects/workspace/pengda/src/main/java">
+			<property name="rootClass" value="com.pinelet.utp.manage.form.ModelImpl"/>
+		</javaModelGenerator>
+		
+		
+		<sqlMapGenerator targetPackage="com.pinelet.utp.dao"
+			targetProject="g:/projects/workspace/pengda/src/main/java" />
+		<daoGenerator targetPackage="com.pinelet.utp.dao"
+			targetProject="g:/projects/workspace/pengda/src/main/java" type="GENERIC-SI">
+			<property name="rootInterface" value="com.pinelet.utp.dao.UTPDAO" />
+		</daoGenerator>
+		<!--table tableName="personalinfo">
+			<property name="useActualColumnNames" value="false" />
+		</table> 
+		<table tableName="deviceinfo">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table tableName="personrel">
+			<property name="useActualColumnNames" value="false" />
+		</table-->
+		<table tableName="commandInfo">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="recordtime" javaType="java.lang.Long" />
+		</table>
+		<!--table tableName="transInfo">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table tableName="cardInfo">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table tableName="cardsync">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="recordtime" javaType="java.lang.Long" />
+		</table>
+		<table tableName="devicerecord">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+				<table tableName="devicework">
+			<property name="useActualColumnNames" value="false" />
+		</table-->    
+	</ibatorContext>
+</ibatorConfiguration>

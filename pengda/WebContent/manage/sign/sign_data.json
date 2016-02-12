@@ -1,0 +1,34 @@
+[{
+	"id":1,
+	"text":"客户注册",
+	"iconCls":"icon-ok",
+	"state":"open",
+	"children":[
+		{
+			"id":"p1",
+			"text":"录入注册信息",
+			"attributes":{"url":"/manage/form.jsp"},
+			"checked":true
+		}
+	]},{
+	"id":2,
+	"text":"客户登入",
+	"state":"closed",
+	"children":[{
+		"id":"u1",
+		"text":"用户证书查询",
+		"attributes":{"url":"/usermanage.action","mathod":"value2"}
+	},{
+		"id":"u2",
+		"text":"借据浏览",
+		"attributes":{"url":"form.html"}
+	},{
+		"id":"u3",
+		"text":"借据签署",
+		"attributes":{"url":"form.html"}
+	},{
+		"id":"u4",
+		"text":"证书撤销",
+		"attributes":{"url":"form.html"}
+	}]
+}]

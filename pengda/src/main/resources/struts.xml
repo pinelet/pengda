@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.action.excludePattern" value="/j_spring_security_check.*" />
+	<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<constant name="struts.custom.i18n.resources" value="msg-app_zh_cn" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+
+	<package name="utp_default" abstract="true" extends="json-default">
+		<default-interceptor-ref name="defaultStack" /> 
+		<global-results>
+			<result name="error">/manage/common/error.jsp</result>
+			<result name="noright">/manage/loginnoright.jsp</result>
+			<result name="nosession">/loginout.jsp</result>
+			<result name="invalid.token" >/resubmit.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="com.pinelet.utp.exception.UtpException"
+				result="error" />
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+	</package>
+
+	<package name="default" namespace="/" extends="utp_default">
+		<default-interceptor-ref name="defaultStack" /> 
+	</package>
+	<package name="admindefault" namespace="/manage" extends="utp_default">
+		<default-interceptor-ref name="defaultStack" /> 
+	</package>
+	<package name="userdefault" namespace="/user" extends="utp_default">
+		<default-interceptor-ref name="defaultStack" /> 
+	</package>
+	<package name="clientdefault" namespace="/client" extends="utp_default">
+		<default-interceptor-ref name="defaultStack" /> 
+	</package>
+</struts>

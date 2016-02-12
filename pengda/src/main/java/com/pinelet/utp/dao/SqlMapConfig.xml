@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMapConfig      
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<properties resource="resourcesconfig.properties"/>
+	<settings
+		cacheModelsEnabled="true"
+		enhancementEnabled="false"
+		lazyLoadingEnabled="false"
+		maxRequests="32"
+		maxSessions="10"
+		maxTransactions="5"
+		useStatementNamespaces="true"
+		/>
+
+	<!-- Configure a built-in transaction manager.  If you're using an 
+		   app server, you probably want to use its transaction manager 
+		   and a managed datasource -->
+		   
+	<!-- <transactionManager type="JDBC" commitRequired="false">
+		<dataSource type="SIMPLE">
+			<property name="JDBC.Driver" value="${jdbc.driver}"/>
+			<property name="JDBC.ConnectionURL" value="${jdbc.url}"/>
+			<property name="JDBC.Username" value="${jdbc.username}"/>
+			<property name="JDBC.Password" value="${jdbc.password}"/>
+			<property name="JDBC.DefaultAutoCommit" value="true" />
+		</dataSource>
+	</transactionManager>
+	-->
+	 
+	<!-- If using an JNDI name for application server,and  want to configure it for global transactions 
+	<transactionManager type="JTA" >
+		<property name="UserTransaction" value="java:/ctx/con/UserTransaction"/>
+		<dataSource type="JNDI">
+			<property name="DataSource" value="java:comp/env/jdbc/mis"/>
+		</dataSource>
+	</transactionManager> -->
+	
+	<!-- List the SQL Map XML files. They can be loaded from the 
+		   classpath, as they are here (com.domain.data...) -->
+	<!--  
+	<sqlMap resource="com/creditease/sms/dao/MIS_CMS_ROLECTL_SqlMap.xml"/> 
+	<sqlMap resource="com/creditease/sms/dao/MIS_CMS_TLRCTL_SqlMap.xml"/>
+	-->
+	
+	<sqlMap resource="com/pinelet/utp/dao/personalinfo_SqlMap.xml"/>
+	<sqlMap resource="com/pinelet/utp/dao/deviceinfo_SqlMap.xml"/>
+	<sqlMap resource="com/pinelet/utp/dao/personrel_SqlMap.xml"/>
+	<sqlMap resource="com/pinelet/utp/dao/transinfo_SqlMap.xml"/>
+	<sqlMap resource="com/pinelet/utp/dao/commandinfo_SqlMap.xml"/>
+	<sqlMap resource="com/pinelet/utp/dao/cardinfo_SqlMap.xml"/>
+	<sqlMap resource="com/pinelet/utp/dao/cardsync_SqlMap.xml"/>
+	<sqlMap resource="com/pinelet/utp/dao/personalinfo_spec_SqlMap.xml"/>
+	<sqlMap resource="com/pinelet/utp/dao/devicework_SqlMap.xml"/>
+	<sqlMap resource="com/pinelet/utp/dao/devicerecord_SqlMap.xml"/>
+	<sqlMap resource="com/pinelet/utp/dao/query_spec_SqlMap.xml"/>
+</sqlMapConfig>
