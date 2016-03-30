@@ -9,19 +9,13 @@ import java.util.List;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.mina.core.session.IoSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
 import com.pinelet.utp.ErrorConstants;
 import com.pinelet.utp.core.CoreConstants;
 import com.pinelet.utp.dao.CardinfoDAO;
-import com.pinelet.utp.dao.CardsyncDAO;
 import com.pinelet.utp.dao.DeviceinfoDAO;
 import com.pinelet.utp.dao.TransinfoDAO;
 import com.pinelet.utp.entity.Cardinfo;
-import com.pinelet.utp.entity.Deviceinfo;
 import com.pinelet.utp.entity.Transinfo;
 import com.pinelet.utp.exception.UtpException;
 
@@ -85,7 +79,6 @@ public class TransService extends AbstractService {
 			//交易表中记录交易信息
 			TransEntity entity = null;
 			Transinfo info = null;
-			Cardinfo cardinfo = null;
 			List<DataEntity> list = message.getData();
 			String pid = deviceinfoDAO.selectByPrimaryKey(message.getImei()).getPid();
 			for(int i = 0; i < list.size(); i++) {
