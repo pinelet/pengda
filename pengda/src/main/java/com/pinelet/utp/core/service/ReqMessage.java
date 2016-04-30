@@ -9,7 +9,7 @@ package com.pinelet.utp.core.service;
 import java.util.*;
 
 /** @pdOid 868c225e-5fb1-4173-a289-f539f36ee577 */
-public class ReqMessage {
+public class ReqMessage extends Message {
    /** @pdOid 61e817af-bf34-4ce8-a1d3-21f4633d6887 */
    private String version;
    /** @pdOid af59b7db-46fb-41c6-bc7d-9922d7d42982 */
@@ -20,16 +20,7 @@ public class ReqMessage {
    private List data;
    /** @pdOid cd56e217-e52b-4492-8590-193863c5b7a6 */
    private String checksum;
-   
-   private String statusdata;
-   
-   public String getStatusdata() {
-	return statusdata;
-}
 
-public void setStatusdata(String statusdata) {
-	this.statusdata = statusdata;
-}
 
 /** @pdOid 65030b33-0bb6-4912-b849-0536700f4a23 */
    public String getVersion() {

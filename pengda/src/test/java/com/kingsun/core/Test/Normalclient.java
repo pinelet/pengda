@@ -26,6 +26,16 @@ public class Normalclient {
 	public String requestAFfail(String IMEICode) {
 		return "&|A|0|00|$";
 	}
+	
+	/**
+	 * 上发验证成功
+	 * @param IMEICode
+	 * @param success 1可用，0不可用，2ID错误
+	 * @return
+	 */
+	public String verifyHsuccess(String IMEICode, int success) {
+		return "&|H|" + IMEICode + "," + success + "|$";
+	}
 	/**
 	 * 客户端上送客户交易消费信息
 	 * @param IMEICode 设备IMEI号
@@ -111,8 +121,8 @@ public class Normalclient {
 	 */
 	public static void main(String[] args) throws Exception {
 
-		//Socket socket = new Socket("127.0.0.1", 9920);
-		Socket socket = new Socket("10.10.38.92", 9920);
+		Socket socket = new Socket("127.0.0.1", 9920);
+		//Socket socket = new Socket("10.10.38.92", 9920);
 		PrintWriter out = new PrintWriter(socket.getOutputStream());
 		switch(Integer.parseInt(args[1])) {
 		case 1:

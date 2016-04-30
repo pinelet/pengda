@@ -27,6 +27,20 @@ public interface CoreConstants {
 	
 	//设备运行参数类型
 	public static final String EX_MAINTENANCE = "G";
+	
+	/**
+	 * 以下为支付类交易
+	 */
+	//服务器测试客户端连接状况
+	public static final String EX_STATUS = "H";
+	
+	//服务器发送交易信息
+	public static final String EX_PAY = "I";
+	
+	//设备请求直接交易信息(应该是设备上的终端做支付成功后，通知服务器交易结果)
+	public static final String EX_DEPAY = "J";
+	
+	
 	/**
 	 * 报文回应处理结果
 	 */

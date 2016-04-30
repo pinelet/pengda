@@ -44,7 +44,7 @@ public class FollowHeartBeatService extends AbstractService {
 
 	@Override
 	protected List<DataEntity> parseData(String origin) {
-		// TODO Auto-generated method stub
+
 		return new ArrayList<DataEntity>();
 	}
 

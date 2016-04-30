@@ -29,6 +29,8 @@ public class unionServerHandler extends IoHandlerAdapter implements ApplicationC
 	public void sessionOpened(IoSession session) {
 		InetSocketAddress clientAddress = (InetSocketAddress)session.getRemoteAddress();
 		loger.warn("host[{}], port[{}]", clientAddress.getHostName(), clientAddress.getPort());
+		//将设备ID加入session
+		
 	}
 	/**
 	 * 异常处理
@@ -56,19 +58,32 @@ public class unionServerHandler extends IoHandlerAdapter implements ApplicationC
 		   return; 
 	   }
 	   String[] reqMessage = StringUtils.splitPreserveAllTokens(originalMsg.trim(), "|");
-	   //取得报文中交易类型编号reqMessage[3]
 	   IService service = null;
-	   if (reqMessage[3].length() == 1 && StringUtils.isAlpha(reqMessage[3]))
+	   //以下标准报文处理：取得报文中交易类型编号reqMessage[3]  
+	   if (reqMessage[3].length() == 1 && StringUtils.isAlpha(reqMessage[3])) {
 		   //适配处理对象
 		   service = (IService)context.getBean("trx" + reqMessage[3]);
+		   setID(session, reqMessage[2]);
+	   }
 	   //如果为心跳交易的回应
-	   else if (CoreConstants.EX_HEARTBEST.equals(reqMessage[1])) 
+	   else if (CoreConstants.EX_HEARTBEST.equals(reqMessage[1]))  {
 		   service = (IService)context.getBean("trx" + CoreConstants.EX_HEARTBEST_FOLLOW);
+	   }
+	   //因后继支付类协议变化为四个字段，此处新增处理逻辑
+	   else if (reqMessage[1].length() == 1 && StringUtils.isAlpha(reqMessage[1])) {
+			   service = (IService)context.getBean("trx" + reqMessage[1]);
+			   setID(session, reqMessage[2].split(",", 2)[0]);
+	   }
 	   else return;
+	  
 	   String resMessage = service.operation(session, reqMessage);
 	   session.write(resMessage);
 	}
 	
+	private void setID (IoSession s, String id) {
+		if (!s.containsAttribute("id"))
+			s.setAttribute("id", id);
+	}
 	/**
 	 * 发送报文
 	 */

@@ -23,6 +23,10 @@
 	<bean id="trxE" class="com.pinelet.utp.core.service.AuthService"/>
 	<bean id="trxF" class="com.pinelet.utp.core.service.MonitorService"/>
 	<bean id="trxG" class="com.pinelet.utp.core.service.MaintenanceService"/>
+	<bean id="trxH" class="com.pinelet.utp.core.service.ValidStatusService"/>
+	<bean id="trxI" class="com.pinelet.utp.core.service.ConfirmService"/>
+	<!--bean id="trxJ" class="com.pinelet.utp.core.service....Service"/-->
+	
 	<!--biz-->
 	<bean id="personManage" class="com.pinelet.utp.manage.biz.PersonManage"/>
 	<bean id="loginManage" class="com.pinelet.utp.manage.biz.LoginManage">

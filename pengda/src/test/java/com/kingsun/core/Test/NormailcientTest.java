@@ -3,35 +3,44 @@ package com.kingsun.core.Test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-public class NormailcientTest extends TestCase {
+public class NormailcientTest {
 
 	private PrintWriter out = null;
 	private Socket socket = null;
 	private BufferedReader in = null;
 	
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
 		socket = new Socket("127.0.0.1", 9920);
 		out = new PrintWriter(socket.getOutputStream());
 	}
 
-	protected void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		try {
 			out.flush();
-			out.close();
+			//out.close();
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			System.out.println(in.readLine());
-			in.close();
-			socket.close();
+			//in.close();
+			//socket.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -44,13 +53,42 @@ public class NormailcientTest extends TestCase {
 		Normalclient client = new Normalclient();
 		out.println(client.requestA("D99998"));
 		out.flush();
-		//out.close();
+		out.close();
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		System.out.println("first in: " + in.readLine());
-		//in.close();
-		//out = new PrintWriter(socket.getOutputStream());
+		in.close();
+		out = new PrintWriter(socket.getOutputStream());
 		out.println(client.requestAFsuccess("&|A|1|00|$"));
 	}
+	
+	/**
+	 * 先发心跳做为一次注册，
+	 * 之后只要收到请求，就回应状态正常
+	 * @throws Exception
+	 */
+	@Test
+	public void testRequesth() throws Exception {
+		//上发心跳
+		Normalclient client = new Normalclient();
+		out.println(client.requestA("13611303594"));
+		out.flush();
+		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		System.out.println("first in: " + in.readLine());
+		out.println(client.requestAFsuccess("&|A|1|00|$"));
+		while(true) {
+			String ins = in.readLine();
+			System.out.println("client receive verify rquest-[" + ins + "]");
+			//回应成功
+			if (ins != null && !ins.isEmpty()) {
+				String resStatus = client.verifyHsuccess("13611303594", 1);
+				out.println(resStatus);
+				out.flush();
+				System.out.println("client send verify result-["+resStatus+"]");
+			} else if (ins == null) break;
+		}
+	}
+	
+
 
 	/**
 	 * 上发消费数据
