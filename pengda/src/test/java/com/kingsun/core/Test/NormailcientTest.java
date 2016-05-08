@@ -28,7 +28,7 @@ public class NormailcientTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		socket = new Socket("127.0.0.1", 9920);
+		socket = new Socket("pay.ssjcx.com", 9920);
 		out = new PrintWriter(socket.getOutputStream());
 	}
 
