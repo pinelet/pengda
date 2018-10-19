@@ -4,3 +4,4 @@ encoding//src/main/resources/resourcesconfig.properties=UTF-8
 encoding//src/main/webapp/accessDenied.jsp=UTF-8
 encoding//src/main/webapp/login.jsp=UTF-8
 encoding//src/test/java=UTF-8
+encoding//target/pengda-1.1/WEB-INF/classes/resourcesconfig.properties=UTF-8

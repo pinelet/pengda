@@ -23,7 +23,7 @@ import junit.framework.TestCase;
 
 public class DeviceManageTest extends TestCase {
 
-	public void testDate() {
+	public void _testDate() {
 		String  d1 = "2013-12-11";
 		String  d2 = "2013-10-11";
 		SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");

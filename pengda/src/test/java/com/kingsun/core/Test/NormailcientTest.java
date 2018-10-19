@@ -26,13 +26,13 @@ public class NormailcientTest {
 	private Socket socket = null;
 	private BufferedReader in = null;
 	
-	@Before
+	//@Before
 	public void setUp() throws Exception {
 		socket = new Socket("pay.ssjcx.com", 9920);
 		out = new PrintWriter(socket.getOutputStream());
 	}
 
-	@After
+	//@After
 	public void tearDown() throws Exception {
 		try {
 			out.flush();
@@ -49,7 +49,7 @@ public class NormailcientTest {
 	/**
 	 * 心跳
 	 */
-	public void testRequestA() throws Exception {
+	public void _testRequestA() throws Exception {
 		Normalclient client = new Normalclient();
 		out.println(client.requestA("D99998"));
 		out.flush();
@@ -66,8 +66,8 @@ public class NormailcientTest {
 	 * 之后只要收到请求，就回应状态正常
 	 * @throws Exception
 	 */
-	@Test
-	public void testRequesth() throws Exception {
+	//@Test
+	public void _testRequesth() throws Exception {
 		//上发心跳
 		Normalclient client = new Normalclient();
 		out.println(client.requestA("13611303594"));
